@@ -3,19 +3,19 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ngMocks } from 'ng-mocks';
 
-import { RadioButtonComponent } from './radio-button.component';
+import { CheckboxComponent } from './checkbox.component';
 
-describe('RadioButtonComponent', () => {
-  let component: RadioButtonComponent<string>;
-  let fixture: ComponentFixture<RadioButtonComponent<string>>;
+describe('CheckboxComponent', () => {
+  let component: CheckboxComponent;
+  let fixture: ComponentFixture<CheckboxComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [RadioButtonComponent],
+      declarations: [CheckboxComponent],
     });
 
-    fixture = TestBed.createComponent<RadioButtonComponent<string>>(RadioButtonComponent);
+    fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
   });
 

@@ -3,32 +3,26 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ValueAccessor } from '../value-accessor/value-accessor';
 
 @Component({
-  selector: 'app-radio-button',
-  templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.scss'],
+  selector: 'app-checkbox',
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RadioButtonComponent),
+      useExisting: forwardRef(() => CheckboxComponent),
       multi: true,
     },
   ],
 })
-export class RadioButtonComponent<T> extends ValueAccessor<T> {
+export class CheckboxComponent extends ValueAccessor<boolean> {
+  @Input() label: string;
+
   @Input() isDisabled: boolean;
 
   @Input() isReadonly: boolean;
 
-  @Input() option: T;
-
-  @Input() label: string;
-
-  @Input() message: string;
-
-  @Input() groupName: string;
-
-  @Output() onChanged = new EventEmitter<T>();
+  @Output() onChanged = new EventEmitter<boolean>();
 
   constructor(injector: Injector) {
     super(injector);

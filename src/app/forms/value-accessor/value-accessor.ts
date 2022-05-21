@@ -10,11 +10,11 @@ export class ValueAccessor<T> implements ControlValueAccessor {
     this.changeDetector = injector.get(ChangeDetectorRef);
   }
 
-  public get value(): T {
+  get value(): T {
     return this.privateValue;
   }
 
-  public set value(value: T) {
+  set value(value: T) {
     this.privateValue = value;
     this.propagateChange(this.value);
   }
@@ -22,7 +22,7 @@ export class ValueAccessor<T> implements ControlValueAccessor {
   /**
    * Write a new value to the element.
    */
-  public writeValue(value: T): void {
+  writeValue(value: T): void {
     this.privateValue = value;
     this.changeDetector.detectChanges();
   }
@@ -30,14 +30,14 @@ export class ValueAccessor<T> implements ControlValueAccessor {
   /**
    * Set the function to be called when the control receives a change event.
    */
-  public registerOnChange(fn: (_: T) => void): void {
+  registerOnChange(fn: (_: T) => void): void {
     this.propagateChange = fn;
   }
 
   /**
    * Set the function to be called when the control receives a touch event.
    */
-  public registerOnTouched(_: (_: T) => void): void {
+  registerOnTouched(_: (_: T) => void): void {
     /**/
   }
 

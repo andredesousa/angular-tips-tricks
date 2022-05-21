@@ -1,6 +1,8 @@
 import { Data, Params } from '@angular/router';
 import { RouterReducerState } from '@ngrx/router-store';
 
+export const stateKey = 'router';
+
 export interface RouterState {
   data: Data;
   params: Params;
@@ -9,5 +11,3 @@ export interface RouterState {
 }
 
 export type AppRouterState = RouterReducerState<RouterState>;
-
-export const stateKey = 'router';

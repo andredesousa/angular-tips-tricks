@@ -1,10 +1,12 @@
-# Angular Tips and Tricks
+# Angular Tips & Tricks
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13 and [Node.js](https://nodejs.org/en/about/releases) version 14.
 
 ## Table of Contents
 
 - [State management](#state-management)
+- [Control Value Accessor](#control-value-accessor)
+- [Error Handling](#error-handling)
 - [Feature tracking](#feature-tracking)
 - [Feature toggle](feature-toggle)
 - [Marble testing](#marble-testing)
@@ -39,6 +41,30 @@ NgRx is mainly for managing global state across an entire application.
 Typical `NgRx` projects organize code by file type and feature modules.
 For each feature module, you see the `actions.ts`, `effects.ts`, `reducers.ts`, `selectors.ts` and `state.ts` file under `store` folder.
 
+## Control Value Accessor
+
+[Control Value Accessor](https://angular.io/api/forms/ControlValueAccessor) interface gives us the power to leverage the Angular forms API, and create a connection between it and the DOM element.
+
+```typescript
+interface ControlValueAccessor {
+  writeValue(value: T): void
+  registerOnChange(fn: (value: T) => void): void
+  registerOnTouched(fn: (value: T) => void): void
+}
+```
+
+This interface allows you to create custom form components.
+
+Under the hood, Angular forms module is applying to each native HTML element a built-in Angular directive, which will be responsible for tracking the value of the field, and communicate it back to the parent form.
+
+## Error Handling
+
+Handling errors properly is essential in building a robust application in Angular.
+Error handlers provide an opportunity to present friendly information to the user and collect important data for development.
+An application that does not handle errors gracefully leaves its users confused and frustrated when the app suddenly breaks without explanation.
+One traditional way of handling errors in Angular is to provide an [ErrorHandler](https://angular.io/api/core/ErrorHandler) class.
+This class can be extended to create your own global error handler.
+
 ## Feature tracking
 
 Analytics helps you understand how people use your app, so you can take action to improve their experience.
@@ -47,7 +73,7 @@ In order to successfully track the user's most used features, it takes advantage
 By adding a new entry to the configuration file, it is guaranteed that any given action, related to a user action (click, data refresh and others) are automatically tracked.
 
 ```typescript
-export const ANALYTICS_EVENTS = {
+const ANALYTICS_EVENTS = {
   [ROUTER_NAVIGATED]: state => ({
     customTrackerId: environment.customTrackerId,
     event: 'event',
@@ -70,7 +96,7 @@ These unfinished features are hidden (toggled) so that they do not appear in the
 You can use the `environment` files and the `isEnableTo` function to enable or disable unfinished features.
 
 ```typescript
-export const environment = {
+const environment = {
   production: true,
   unfinishedFeature: isEnableTo(LOCAL, DEV, INT),
   ...
@@ -120,10 +146,15 @@ If you want to exclude a specific test, simply use `xit()` or `xdescribe()`.
 If you want to run a specific test, use `fit()` or `fdescribe()`.
 The `x` means exclude and the `f` stands for focused.
 
-You can see the HTML coverage report opening the [index.html](dist/coverage/index.html) file in your web browser.
+You can see the HTML coverage report opening the [index.html](coverage/index.html) file in your web browser.
 
 ## Reference documentation
 
 For further reference, please consider the following articles:
 
 - [npm scripts](https://docs.npmjs.com/cli/v8/using-npm/scripts)
+- [Angular Service Layers](https://blog.angular-university.io/angular-2-redux-ngrx-rxjs/)
+- [Interactive diagrams of Rx Observables](https://rxmarbles.com/)
+- [RxJS - Marble Testing](https://dev.to/this-is-learning/rxjs-marble-testing-2gg9)
+- [Error Handling with Angular](https://rollbar.com/blog/error-handling-with-angular-8-tips-and-best-practices/)
+- [Expecting the Unexpected](https://medium.com/angular-in-depth/expecting-the-unexpected-best-practices-for-error-handling-in-angular-21c3662ef9e4)

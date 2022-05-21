@@ -4,6 +4,7 @@
 export interface IEnvironment {
   analytics: boolean;
   customTrackerId: string;
+  pollingInterval: number,
   production: boolean;
 }
 

@@ -14,14 +14,15 @@ import { GlobalErrorHandler } from './error-handler/error-handler.service';
 import { RouterSerializer } from './router/router.serializer';
 import { reducers } from './app.store';
 import { stateKey as router } from './router/router.state';
-import { RadioButtonComponent } from './forms/radio-button/radio-button.component';
+import { CheckboxComponent } from './forms/checkbox/checkbox.component';
+import { PollingEffects } from './polling/polling.effects';
 
 @NgModule({
-  declarations: [AppComponent, RadioButtonComponent],
+  declarations: [AppComponent, CheckboxComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    EffectsModule.forRoot([AnalyticsEffects, FibonacciEffects]),
+    EffectsModule.forRoot([AnalyticsEffects, FibonacciEffects, PollingEffects]),
     FormsModule,
     StoreModule.forRoot(reducers),
     StoreRouterConnectingModule.forRoot({

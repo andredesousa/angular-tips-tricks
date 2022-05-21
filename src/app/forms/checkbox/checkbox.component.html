@@ -1,0 +1,15 @@
+<label
+  class="checkbox"
+  [class.disabled]="isDisabled"
+  [class.readonly]="isReadonly"
+>
+  <input
+    class="checkbox-input"
+    type="checkbox"
+    [(ngModel)]="value"
+    [disabled]="isDisabled"
+    (change)="onChanged.emit(value)"
+  />
+  {{ label }}
+  <span class="checkmark"></span>
+</label>

@@ -25,7 +25,7 @@ module.exports = function (config) {
         { type: 'html', subdir: '.' },
         { type: 'text-summary', subdir: '.' },
       ],
-      dir: require('path').join(__dirname, 'dist/coverage/'),
+      dir: require('path').join(__dirname, 'coverage/'),
       check: config.buildWebpack.options.watch
         ? {}
         : {

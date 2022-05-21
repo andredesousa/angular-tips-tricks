@@ -1,0 +1,53 @@
+@mixin inactive-state {
+  pointer-events: none;
+
+  .checkmark {
+    border-color: #e0e0e0;
+    color: #c2c2c2;
+  }
+}
+
+:host {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox {
+  cursor: pointer;
+  font: 12px Arial, sans-serif;
+  height: 16px;
+  line-height: 16px;
+  padding-left: 22px;
+  position: relative;
+
+  .checkbox-input {
+    display: none;
+  }
+
+  .checkmark {
+    border: 1 solid #c2c2c2;
+    color: #444444;
+    font-size: 14px;
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 16px;
+  }
+
+  &:hover {
+    .checkmark {
+      background-color: #e9ebf1;
+    }
+  }
+
+  &.disabled {
+    @include inactive-state;
+    color: #c2c2c2;
+  }
+
+  &.readonly {
+    @include inactive-state;
+  }
+}
