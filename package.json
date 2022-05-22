@@ -11,7 +11,8 @@
     "lint": "prettier --check \"src/**/*.{ts,scss,html}\"",
     "lint:fix": "prettier --write \"src/**/*.{ts,scss,html}\"",
     "clean": "rimraf dist/ .angular/",
-    "build": "ng build"
+    "build": "ng build",
+    "release": "docker build -f docker/Dockerfile -t angular13 ."
   },
   "dependencies": {
     "@angular/animations": "13.2.1",
@@ -25,6 +26,7 @@
     "@ngrx/effects": "13.1.0",
     "@ngrx/router-store": "13.1.0",
     "@ngrx/store": "13.1.0",
+    "@ngx-translate/core": "14.0.0",
     "observable-webworker": "4.0.1",
     "rxjs": "7.5.0",
     "tslib": "2.3.0",

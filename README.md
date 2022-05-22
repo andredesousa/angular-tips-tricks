@@ -5,14 +5,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Table of Contents
 
 - [State management](#state-management)
+- [Web Workers](#web-workers)
 - [Control Value Accessor](#control-value-accessor)
 - [Error Handling](#error-handling)
+- [Internationalization](#internationalization)
 - [Feature tracking](#feature-tracking)
 - [Feature toggle](feature-toggle)
-- [Marble testing](#marble-testing)
 - [Linting and formatting code](#linting-and-formatting-code)
 - [Running unit tests](#running-unit-tests)
-- [Reference documentation](#reference-documentation)
+- [Marble testing](#marble-testing)
+- [Build and deployment](#build-and-deployment)
+- [Further help](#further-help)
 
 ## State management
 
@@ -41,6 +44,16 @@ NgRx is mainly for managing global state across an entire application.
 Typical `NgRx` projects organize code by file type and feature modules.
 For each feature module, you see the `actions.ts`, `effects.ts`, `reducers.ts`, `selectors.ts` and `state.ts` file under `store` folder.
 
+## Web Workers
+
+[Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) lets you run CPU-intensive computations in a background thread, freeing the main thread to update the user interface.
+If you find your application performs a lot of computations, such as generating CAD drawings or doing heavy geometrical calculations, using web workers can help increase your application's performance.
+The worker thread can perform tasks without interfering with the user interface.
+
+A worker is an object created using a constructor (e.g. `Worker()`) that runs a named JavaScript file.
+You can run whatever code you like inside the worker thread, with some exceptions.
+For example, you can't directly manipulate the DOM from inside a worker, or use some default methods and properties of the window object
+
 ## Control Value Accessor
 
 [Control Value Accessor](https://angular.io/api/forms/ControlValueAccessor) interface gives us the power to leverage the Angular forms API, and create a connection between it and the DOM element.
@@ -64,6 +77,25 @@ Error handlers provide an opportunity to present friendly information to the use
 An application that does not handle errors gracefully leaves its users confused and frustrated when the app suddenly breaks without explanation.
 One traditional way of handling errors in Angular is to provide an [ErrorHandler](https://angular.io/api/core/ErrorHandler) class.
 This class can be extended to create your own global error handler.
+
+## Internationalization
+
+You have the library [ngx-translate](http://www.ngx-translate.com/) for translation your texts.
+It lets you define translations for your content in different languages and switch between them easily.
+You can either use the `TranslateService`, the `TranslatePipe` or the `TranslateDirective` to get your translation values.
+This is how you do it with the pipe:
+
+```html
+<div>{{ 'HELLO' | translate:param }}</div>
+```
+
+Your translations should be stored in a JSON file. This file looks like this:
+
+```json
+{
+  "HELLO": "hello {{value}}"
+}
+```
 
 ## Feature tracking
 
@@ -103,6 +135,28 @@ const environment = {
 };
 ```
 
+## Linting and formatting code
+
+Linters are also excellent tools for finding certain classes of bugs, such as those related to variable scope.
+
+Use `npm run lint` to analyze your code.
+Many problems can be automatically fixed with `npm run lint:fix`.
+
+Depending on your editor, you may want to add an editor extension to lint and format your code while you type or on-save.
+
+## Running unit tests
+
+Unit tests are responsible for testing of individual methods or classes by supplying input and making sure the output is as expected.
+
+Use `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Use `npm run test:watch` to keep executing unit tests in real time while watching for file changes in the background.
+
+If you want to exclude a specific test, simply use `xit()` or `xdescribe()`.
+If you want to run a specific test, use `fit()` or `fdescribe()`.
+The `x` means exclude and the `f` stands for focused.
+
+You can see the HTML coverage report opening the [index.html](coverage/index.html) file in your web browser.
+
 ## Marble testing
 
 [Marble testing](https://rxjs.dev/guide/testing/marble-testing) allows for a more natural style of testing observables.
@@ -126,33 +180,18 @@ You also have some functions to parse and create observables from your diagrams:
 - `cold(marbles: string, values?: any, error?: any)` function: Subscription starts when test begins.
 - `hot(marbles: string, values?: any, error?: any)` function: Behaves like subscription starts at point of caret.
 
-## Linting and formatting code
+## Build and deployment
 
-Linters are also excellent tools for finding certain classes of bugs, such as those related to variable scope.
+Use `npm run build` to build this project. The build artifacts will be stored in the `dist` directory.
+In `docker` folder you can find a Dockerfile and [Nginx](https://www.nginx.com/) configuration file.
+Use `npm run release` after `build` command to generate the Docker image.
 
-Use `npm run lint` to analyze your code.
-Many problems can be automatically fixed with `npm run lint:fix`.
-
-Depending on your editor, you may want to add an editor extension to lint and format your code while you type or on-save.
-
-## Running unit tests
-
-Unit tests are responsible for testing of individual methods or classes by supplying input and making sure the output is as expected.
-
-Use `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-Use `npm run test:watch` to keep executing unit tests in real time while watching for file changes in the background.
-
-If you want to exclude a specific test, simply use `xit()` or `xdescribe()`.
-If you want to run a specific test, use `fit()` or `fdescribe()`.
-The `x` means exclude and the `f` stands for focused.
-
-You can see the HTML coverage report opening the [index.html](coverage/index.html) file in your web browser.
-
-## Reference documentation
+## Further help
 
 For further reference, please consider the following articles:
 
 - [npm scripts](https://docs.npmjs.com/cli/v8/using-npm/scripts)
+- [NgRx: Patterns and Techniques](https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5)
 - [Angular Service Layers](https://blog.angular-university.io/angular-2-redux-ngrx-rxjs/)
 - [Interactive diagrams of Rx Observables](https://rxmarbles.com/)
 - [RxJS - Marble Testing](https://dev.to/this-is-learning/rxjs-marble-testing-2gg9)
