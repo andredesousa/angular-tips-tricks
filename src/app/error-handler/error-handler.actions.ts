@@ -20,7 +20,4 @@ export const enum ActionTypes {
   APP_ERROR = '[App] Internal Error',
 }
 
-export const appError = createAction(
-  ActionTypes.APP_ERROR,
-  props<{ error: AppError }>()
-);
+export const appError = createAction(ActionTypes.APP_ERROR, props<{ error: AppError }>());

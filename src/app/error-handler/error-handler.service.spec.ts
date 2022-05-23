@@ -20,7 +20,7 @@ describe('GlobalErrorHandler', () => {
 
   afterEach(() => {
     environment.production = false;
-  })
+  });
 
   it('should not dispatch the error action', () => {
     spyOn(injector, 'get');

@@ -10,7 +10,4 @@ export const startPolling = createAction(ActionTypes.START_POLLING);
 
 export const stopPolling = createAction(ActionTypes.STOP_POLLING);
 
-export const fetchedNewMessage = createAction(
-  ActionTypes.FETCHED_NEW_MESSAGE,
-  props<{ message: string }>()
-);
+export const fetchedNewMessage = createAction(ActionTypes.FETCHED_NEW_MESSAGE, props<{ message: string }>());

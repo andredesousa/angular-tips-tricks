@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 - [State management](#state-management)
 - [Web Workers](#web-workers)
+- [Polling](#polling)
 - [Control Value Accessor](#control-value-accessor)
 - [Error Handling](#error-handling)
 - [Internationalization](#internationalization)
@@ -53,6 +54,16 @@ The worker thread can perform tasks without interfering with the user interface.
 A worker is an object created using a constructor (e.g. `Worker()`) that runs a named JavaScript file.
 You can run whatever code you like inside the worker thread, with some exceptions.
 For example, you can't directly manipulate the DOM from inside a worker, or use some default methods and properties of the window object
+
+[Observable Webworker](https://www.npmjs.com/package/observable-webworker) provides the ability to use web workers with RxJS observables.
+You can use Web Workers directly in your Angular components.
+
+## Polling
+
+Polling is a technique where you check for fresh data over a given interval by periodically making API requests to a server.
+For example, you can use polling if there is data that changes frequently or you need to wait for the server to transition a given state.
+Polling is a simple alternative to web sockets or server events.
+In this project, you will find an example using RxJS and NgRX.
 
 ## Control Value Accessor
 
@@ -183,8 +194,14 @@ You also have some functions to parse and create observables from your diagrams:
 ## Build and deployment
 
 Use `npm run build` to build this project. The build artifacts will be stored in the `dist` directory.
+
 In `docker` folder you can find a Dockerfile and [Nginx](https://www.nginx.com/) configuration file.
 Use `npm run release` after `build` command to generate the Docker image.
+After, you can start the application via:
+
+```bash
+docker run -d -p 8080:8080 angular13
+```
 
 ## Further help
 
@@ -194,6 +211,9 @@ For further reference, please consider the following articles:
 - [NgRx: Patterns and Techniques](https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5)
 - [Angular Service Layers](https://blog.angular-university.io/angular-2-redux-ngrx-rxjs/)
 - [Interactive diagrams of Rx Observables](https://rxmarbles.com/)
+- [Polling using RxJS](https://itnext.io/polling-using-rxjs-b56cd3531815)
+- [Polling with NgRx](https://dev.to/komyg/angular-fire-and-forget-polling-with-ngrx-rxjs-and-unit-tests-3ab5)
 - [RxJS - Marble Testing](https://dev.to/this-is-learning/rxjs-marble-testing-2gg9)
 - [Error Handling with Angular](https://rollbar.com/blog/error-handling-with-angular-8-tips-and-best-practices/)
 - [Expecting the Unexpected](https://medium.com/angular-in-depth/expecting-the-unexpected-best-practices-for-error-handling-in-angular-21c3662ef9e4)
+- [Angular Application With NGINX and Docker](https://medium.com/bb-tutorials-and-thoughts/how-to-serve-angular-application-with-nginx-and-docker-3af45be5b854)

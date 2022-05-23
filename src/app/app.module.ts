@@ -40,9 +40,7 @@ import { LazyTranslateLoader, Languages } from './app.i18n';
     }),
     ExternalModules,
   ],
-  providers: [
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
-  ],
+  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

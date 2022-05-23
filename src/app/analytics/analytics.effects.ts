@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { AppState } from '../app.store';
 import { AllActionTypes, ANALYTICS_EVENTS } from './analytics.events';
 
-
 @Injectable()
 export class AnalyticsEffects {
   readonly featureTracking$ = createEffect(

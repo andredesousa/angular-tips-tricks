@@ -1,4 +1,4 @@
-import { IEnvironment, isEnableTo, PROD } from "./i.environment";
+import { IEnvironment, isEnableTo, PROD } from './i.environment';
 
 export const environment: IEnvironment = {
   analytics: isEnableTo(PROD),
