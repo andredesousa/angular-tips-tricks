@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { generateFibonacci } from './fibonacci/fibonacci.actions';
-import { selectFibonacciNumber, selectIsLoading } from './fibonacci/fibonacci.selectors';
+import { selectFibonacciNumber } from './fibonacci/fibonacci.selectors';
 import { startPolling, stopPolling } from './polling/polling.actions';
 import { selectIsPolling, selectMessages } from './polling/polling.selectors';
 

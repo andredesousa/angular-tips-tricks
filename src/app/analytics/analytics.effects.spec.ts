@@ -1,25 +1,31 @@
-import { Actions } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { RouterNavigatedAction, routerNavigatedAction } from '@ngrx/router-store';
+import { TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { routerNavigatedAction } from '@ngrx/router-store';
 import { cold, hot } from 'jasmine-marbles';
 import { environment } from 'src/environments/environment';
 
 import { AnalyticsEffects } from './analytics.effects';
 
 describe('AnalyticsEffects', () => {
-  let action: RouterNavigatedAction;
-  let actions$: Actions;
   let effects: AnalyticsEffects;
-  let store: Store;
 
-  beforeEach(() => {
-    action = routerNavigatedAction({ payload: {} as any });
-    actions$ = hot('-a', { a: action });
-    effects = new AnalyticsEffects(actions$, store);
+  beforeAll(() => {
+    window.dataLayer = { push: jasmine.createSpy() };
+    environment.production = true;
+    environment.analytics = true;
   });
 
-  afterEach(() => {
-    environment.production = false;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        AnalyticsEffects,
+        provideMockActions(() => hot('-a', { a: routerNavigatedAction({ payload: {} as any }) })),
+        provideMockStore({ initialState: {} }),
+      ],
+    });
+
+    effects = TestBed.inject(AnalyticsEffects);
   });
 
   it('should not call window.dataLayer', () => {
@@ -28,12 +34,13 @@ describe('AnalyticsEffects', () => {
   });
 
   it('should call window.dataLayer', () => {
-    environment.production = true;
-
-    expect(effects.featureTracking$).toBeObservable(cold('-a', { a: [action, {}] }));
+    expect(effects.featureTracking$).toBeObservable(cold('--'));
     expect(window.dataLayer.push).toHaveBeenCalledWith({
-      name: 'CHANGE_PROFILE',
-      category: ['TVN', 'TVN_VIEW'],
+      customTrackerId: 'GTM-XXXX',
+      event: 'event',
+      eventAction: '@ngrx/router-store/navigated',
+      eventCategory: 'navigated',
+      eventLabel: 'router navigated',
     });
   });
 });

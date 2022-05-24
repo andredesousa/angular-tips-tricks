@@ -13,7 +13,7 @@ describe('Polling actions', () => {
     expect(action).toEqual({ type: ActionTypes.STOP_POLLING });
   });
 
-  it(`should create an action ${ActionTypes.START_POLLING}`, () => {
+  it(`should create an action ${ActionTypes.FETCHED_NEW_MESSAGE}`, () => {
     const action = fetchedNewMessage({ message: 'New message from system' });
 
     expect(action).toEqual({
