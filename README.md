@@ -208,6 +208,8 @@ docker run -d -p 8080:8080 angular13
 For further reference, please consider the following articles:
 
 - [npm scripts](https://docs.npmjs.com/cli/v8/using-npm/scripts)
+- [Speed up your Angular App with Web Workers](https://www.grapecity.com/blogs/speed-up-angular-apps-with-web-workers)
+- [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html)
 - [NgRx: Patterns and Techniques](https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5)
 - [Angular Service Layers](https://blog.angular-university.io/angular-2-redux-ngrx-rxjs/)
 - [Interactive diagrams of Rx Observables](https://rxmarbles.com/)
