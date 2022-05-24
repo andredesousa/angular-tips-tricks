@@ -1,5 +1,7 @@
 # Angular Tips & Tricks
 
+This project contains tips & Tricks for Angular projects using RxJS, NgRx, Web Workers, Docker, and other stuff.
+The examples presented in this project are covered with unit tests.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13 and [Node.js](https://nodejs.org/en/about/releases) version 14.
 
 ## Table of Contents
