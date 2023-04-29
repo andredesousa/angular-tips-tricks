@@ -17,6 +17,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [Linting and formatting code](#linting-and-formatting-code)
 - [Running unit tests](#running-unit-tests)
 - [Marble testing](#marble-testing)
+- [Healthchecks and metrics](#healthchecks-and-metrics)
 - [Build and deployment](#build-and-deployment)
 - [Further help](#further-help)
 
@@ -192,6 +193,12 @@ You also have some functions to parse and create observables from your diagrams:
 
 - `cold(marbles: string, values?: any, error?: any)` function: Subscription starts when test begins.
 - `hot(marbles: string, values?: any, error?: any)` function: Behaves like subscription starts at point of caret.
+
+## Healthchecks and metrics
+
+In order to verify if a container is healthy and ready to serve traffic, you must expose a `/health` endpoint responding with a HTTP 200 status code.
+
+In order to provide metrics about `nginx`, you must define `stub_status` in your `nginx.conf` file and expose it in `/health` endpoint.
 
 ## Build and deployment
 
